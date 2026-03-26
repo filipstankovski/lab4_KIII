@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'docker:latest'
+            args '--privileged'
+        }
+    }
 
     environment {
         IMAGE_NAME = "my-image"
@@ -8,7 +13,7 @@ pipeline {
     stages {
         stage('Clone repository') {
             steps {
-                echo 'Repository cloned by Jenkins automatically'
+                echo 'Repository cloned'
             }
         }
 
